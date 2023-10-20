@@ -8,36 +8,49 @@ namespace Assignment
 {
     internal class Product
     {
-        private string? productName;
-        private double price;
-        private int quantity;
-
-
-
         public Product(string? productName, double price, int quantity)
         {
-            this.productName = productName;
-            this.price = price;
-            this.quantity = quantity;
+            ProductName = productName;
+            Price = price;
+            Quantity = quantity;
         }
 
+        /*
+private string? productName;
+private double price;
+private int quantity;
+
+
+
+public Product(string? productName, double price, int quantity)
+{
+   this.productName = productName;
+   this.price = price;
+   this.quantity = quantity;
+}
+*/
+
+        public string? ProductName { get; set; }
+        public double  Price { get; set; }
+        public int Quantity { get; set; }
+       
         public void SetPrice(double newPrice)
         {
 
-            price = newPrice;
+            Price = newPrice;
 
         }
 
         public double ProductValue()
         {
 
-            return price * quantity;
+            return Price * Quantity;
         }
 
         public void DisplayProduct()
         {
-            Console.WriteLine("Product Name :" + productName + " Price : "
-                + price + " Quantity :" + quantity);
+            Console.WriteLine("Product Name :" + ProductName + " Price : "
+                + Price + " Quantity :" + Quantity);
         }
     }
 }
