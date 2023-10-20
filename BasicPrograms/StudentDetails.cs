@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace BasicPrograms
 {
-    internal class StudentDetails
+    internal class StudentDetails : College
     {
+        /*
         public StudentDetails(int rollNo, string? studentName, string? city)
         {
             RollNo = rollNo;
             StudentName = studentName;
             City = city;
         }
+        */
 
         public int RollNo { get; set; }
         public string? StudentName { get; set;}
@@ -22,7 +24,7 @@ namespace BasicPrograms
         public void DisplayStudentDetails()
         {
             Console.WriteLine("Roll no : " + RollNo + " Student Name : " + StudentName
-                + " City" + City);
+                + " City : " + City);
         }
 
 
