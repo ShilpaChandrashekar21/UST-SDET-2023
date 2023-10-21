@@ -135,7 +135,7 @@ switch (Convert.ToInt32(Console.ReadLine()))
 
 
 }
-*/
+
 
 EV eV = new();
 eV.VehicleNum = 9339;
@@ -151,6 +151,24 @@ pV.Model = "2023";
 pV.Display();
 Console.WriteLine(pV.setTypeForVeh());
 
+
+Doctor doctor = new Doctor();
+doctor.AddNewDoctor(23,"AAD");
+doctor.DisplayDoctorDetails();
+doctor.ModifyDoctor(24,"AAE");
+doctor.DisplayDoctorDetails();
+doctor.BookAppointment(23, "AS");
+doctor.DeleteAppointment("AS");
+*/
+
+Surgen surgen = new Surgen();
+surgen.AddNewDoctor(23, "AA");
+surgen.DisplayDoctorDetails();
+surgen.ModifyDoctor(24, "BB");
+surgen.DisplayDoctorDetails();
+surgen.BookAppointment(23, "AA");
+surgen.DeleteAppointment("AA");
+surgen.DisplaySurgenDetails("SR");
 
 
 
