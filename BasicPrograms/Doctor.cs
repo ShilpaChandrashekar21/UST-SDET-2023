@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicPrograms
 {
-    internal class Doctor : IDoctor,IAppointmnet
+    internal class Doctor : IDoctor,IAppointment
     {
         public int DoctorId { get; set; }
         public string? DoctorName { get; set;}

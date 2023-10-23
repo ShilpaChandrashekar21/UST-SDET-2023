@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicPrograms
 {
-    internal interface IAppointmnet
+    internal interface IAppointment
     {
         void BookAppointment(int did, string? pname);
         void DeleteAppointment(string? pname);

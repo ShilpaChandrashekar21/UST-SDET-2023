@@ -63,7 +63,7 @@ switch (Convert.ToInt32(Console.ReadLine()))
         case 4:
             Customer customer = new Customer();
         Console.WriteLine("Enter the Customer Id");
-            customer.CustomerId1= Convert.ToInt32(Console.ReadLine());
+        customer.CustomerId1= Convert.ToInt32(Console.ReadLine());
         Console.WriteLine("Enter the Customer Name");
         customer.CustomerName1 = Console.ReadLine();
         Console.WriteLine("Enter the Phone Number");
@@ -93,7 +93,8 @@ switch (Convert.ToInt32(Console.ReadLine()))
        Console.WriteLine("Total cost: "+ order.CalculateCost(book1));
         break;
 
-    default:    Console.WriteLine("please check the number you have entered");
+    default:    
+        Console.WriteLine("please check the number you have entered");
         break;
 
 }

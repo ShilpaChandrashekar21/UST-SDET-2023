@@ -159,16 +159,47 @@ doctor.ModifyDoctor(24,"AAE");
 doctor.DisplayDoctorDetails();
 doctor.BookAppointment(23, "AS");
 doctor.DeleteAppointment("AS");
+
+
+Surgeon surgeon = new Surgeon();
+surgeon.AddNewDoctor(23, "AA");
+surgeon.DisplayDoctorDetails();
+surgeon.ModifyDoctor(24, "BB");
+surgeon.DisplayDoctorDetails();
+surgeon.BookAppointment(23, "AA");
+surgeon.DeleteAppointment("AA");
+surgeon.DisplaySurgeonDetails("SR");
 */
 
-Surgen surgen = new Surgen();
-surgen.AddNewDoctor(23, "AA");
-surgen.DisplayDoctorDetails();
-surgen.ModifyDoctor(24, "BB");
-surgen.DisplayDoctorDetails();
-surgen.BookAppointment(23, "AA");
-surgen.DeleteAppointment("AA");
-surgen.DisplaySurgenDetails("SR");
+//BankDetails bankDetails=new BankDetails(123,123456789L,"ASD","Active");
+//BankDetails bank = new(12, 12344L, "AA");
+//BankDetails bank = new( 12344L, "AA");
+
+BankDetailsNew bank = new(22, 2344L, "Shilpa", "active");
+bank.WelcomeMessage();
+Console.WriteLine("How do you want to get your Bank details");
+Console.WriteLine("Select \n 1-> Customer id\n 2-> Account number\n " +
+    "3-> name");
+switch (Convert.ToInt32(Console.ReadLine()))
+{
+    case 1:
+        Console.WriteLine("enter the customer ID");
+        bank.GetAccountDetails(Convert.ToInt32(Console.ReadLine()));
+        
+        break;
+    case 2:
+        Console.WriteLine("enter the  Account Number");
+        bank.GetAccountDetails(Convert.ToInt64(Console.ReadLine()));
+        break;
+    case 3:
+        Console.WriteLine("enter the  Name");
+        bank.GetAccountDetails(Console.ReadLine());
+        break;
+    default:
+        Console.WriteLine("Please check the number you have entered");
+        break;
+
+}
 
 
 

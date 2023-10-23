@@ -55,7 +55,7 @@ DigitalProduct digitalProduct = new(5, "camera", 10000, 6, "MP4");
 digitalProduct.DisplayProduct();
 digitalProduct.ElectronicsProductDisplay();
 digitalProduct.DisplayDigitalProduct();
-*/
+
 
 Console.WriteLine("Choose");
 Console.WriteLine("1 -> DigitalProduct\n 2->ElectronicsProduct\n " +
@@ -83,3 +83,25 @@ switch (Convert.ToInt32(Console.ReadLine()))
 
 
 }
+
+
+Employee employee = new("ab", "cd", 23, 22);
+employee.DisplayInfo();
+*/
+
+Circle circle = new Circle();
+circle.Radius = 5;
+circle.Draw();
+Console.WriteLine("Area : "+circle.CalculateArea());
+Console.WriteLine("Perimeter: "+circle.CalculatePerimeter());
+
+Rectangle rectangle = new Rectangle();
+rectangle.Length = 10;
+rectangle.Breadth = 20;
+rectangle.Draw();
+Console.WriteLine("Area: "+rectangle.CalculateArea());
+Console.WriteLine("Perimeter: "+rectangle.CalculatePerimeter());
+
+
+
+
