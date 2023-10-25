@@ -8,6 +8,9 @@ namespace Assignment
 {
     internal class LifeInsurance: InsurancePolicy
     {
+        public int Age {  get; set; }
+        public float PercentageOfPremium { get; set; }
+
         public LifeInsurance(string? policyName, int policyId,
             double premiumAmount,int age,float pop) :
             base(policyName, policyId, premiumAmount)
@@ -20,9 +23,7 @@ namespace Assignment
 
         }
 
-        public int Age {  get; set; }
-        public float PercentageOfPremium { get; set; }
-
+        
         public override void CalculatePremium()
         {
            Console.WriteLine("Do you need Health insurance");
