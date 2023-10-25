@@ -31,15 +31,15 @@ namespace Assignment
             {
                 if(Age >=0 && Age <= 18)
                 {
-                    PremiumAmount += PercentageOfPremium;
+                    PremiumAmount += PercentageOfPremium*PremiumAmount;
                 }
                 else if (Age >= 19 && Age <= 40)
                 {
-                    PremiumAmount += (PercentageOfPremium*2.6);
+                    PremiumAmount += ((PercentageOfPremium+2.6)*PremiumAmount);
                 }
                 else
                 {
-                    PremiumAmount += (PercentageOfPremium * 3);
+                    PremiumAmount += ((PercentageOfPremium + 3)*PremiumAmount);
                 }
             }
         }
