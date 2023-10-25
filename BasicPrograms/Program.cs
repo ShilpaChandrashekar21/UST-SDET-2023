@@ -169,7 +169,7 @@ surgeon.DisplayDoctorDetails();
 surgeon.BookAppointment(23, "AA");
 surgeon.DeleteAppointment("AA");
 surgeon.DisplaySurgeonDetails("SR");
-*/
+
 
 //BankDetails bankDetails=new BankDetails(123,123456789L,"ASD","Active");
 //BankDetails bank = new(12, 12344L, "AA");
@@ -200,6 +200,23 @@ switch (Convert.ToInt32(Console.ReadLine()))
         break;
 
 }
+
+
+NonGenericCollection non = new NonGenericCollection();
+//non.ArrayListHandling();
+//non.StackHandling();
+//non.QueueHandling();
+//non.HashTableHandling();
+//non.SortedListHandling();
+*/
+
+GenericCollection genericCollection = new GenericCollection();
+//genericCollection.ListHandling();
+//genericCollection.QueueHandling();
+//genericCollection.StackHandling();
+//genericCollection.SortedListHandling();
+genericCollection.DictionaryHandling();
+
 
 
 

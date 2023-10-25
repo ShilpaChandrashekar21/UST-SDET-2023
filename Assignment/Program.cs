@@ -87,7 +87,7 @@ switch (Convert.ToInt32(Console.ReadLine()))
 
 Employee employee = new("ab", "cd", 23, 22);
 employee.DisplayInfo();
-*/
+
 
 Circle circle = new Circle();
 circle.Radius = 5;
@@ -101,6 +101,21 @@ rectangle.Breadth = 20;
 rectangle.Draw();
 Console.WriteLine("Area: "+rectangle.CalculateArea());
 Console.WriteLine("Perimeter: "+rectangle.CalculatePerimeter());
+
+InsurancePolicy policy = new("health", 123, 500000);
+policy.RenewPolicy(Convert.ToDouble(Console.ReadLine()));
+policy.DisplayPolicyDetails();
+policy.RenewPolicy();
+policy.DisplayPolicyDetails();
+*/
+
+LifeInsurance lifeInsurance = new("aa", 12, 500000, 12, 0.3f);
+lifeInsurance.CalculatePremium();
+lifeInsurance.DisplayLifeInsurancePolicyDetails();
+
+CarInsurance carInsurance = new("bb", 13, 600000,4);
+carInsurance.CalculatePremium();
+carInsurance.DisplayCarInsurancePolicyDetails();
 
 
 
