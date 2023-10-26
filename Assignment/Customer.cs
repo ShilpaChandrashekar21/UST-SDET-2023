@@ -16,15 +16,44 @@ namespace Assignment
 
         
 
-        public Customer(int customerId, string name, string phoneNumber, int balance)
+        public Customer(int customerId, string name,
+            string phoneNumber, int balance)
         {
             CustomerId = customerId;
             Name = name;
             PhoneNumber = phoneNumber;
             Balance = balance;
         }
+        public Customer() { }
 
-        List<Customer> customerArray = new List<Customer>();
+       
+        
+        
+
+        public void DisplayCustomerDetails()
+        {
+           
+                Console.WriteLine("Customer Name: "+Name
+                +" Customer Id: " + CustomerId+
+               " Phone Number: " + PhoneNumber+
+               " Balance: " + Balance);
+            
+        }
+
+        public bool SearchCustomer(string? phoneNum,Customer customer1)
+        {
+            if(
+                customer1.PhoneNumber.Equals(phoneNum))
+            {
+                return true;
+                
+            }
+            else
+            {
+                return false;
+                
+            }
+        }
        
     }
 }
