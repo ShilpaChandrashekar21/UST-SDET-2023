@@ -23,6 +23,8 @@ arrayExample.JaggedArray();
 */
 
 using BasicPrograms;
+using BasicPrograms.ExceptionMessage;
+using System.Globalization;
 
 //StudentMarks studentMarks = new(3, "ww", "bal", 34, 56, 55, 67, 5);
 /*
@@ -208,7 +210,7 @@ NonGenericCollection non = new NonGenericCollection();
 //non.QueueHandling();
 //non.HashTableHandling();
 //non.SortedListHandling();
-*/
+
 
 GenericCollection genericCollection = new GenericCollection();
 //genericCollection.ListHandling();
@@ -216,6 +218,74 @@ GenericCollection genericCollection = new GenericCollection();
 //genericCollection.StackHandling();
 //genericCollection.SortedListHandling();
 genericCollection.DictionaryHandling();
+*/
+
+ExceptionHandling exception = new(12, 101);
+try
+{
+    
+    exception.NumCheck1();
+
+}
+catch (Num1Exception ex) 
+{
+    Console.WriteLine(ex.Message);
+}
+
+try
+{
+    
+    exception.NumCheck2();
+
+}
+catch (Num2Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+/*try
+{
+   // exception.Divide();
+    exception.NumCheck();
+    
+}
+catch(ArgumentException ex) 
+{
+    Console.WriteLine(ex.Message);
+}
+try
+{
+    
+    exception.NumCheck2();
+
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine(ex.Message);
+}*/
+/*catch (ArithmeticException)
+{
+    Console.WriteLine(myException.exMessageList[1]);
+
+}
+catch (IndexOutOfRangeException)
+{
+    Console.WriteLine(myException.exMessageList[2]);
+}
+catch (ArgumentException)
+{
+    Console.WriteLine(myException.exMessageList[4]);
+}
+catch (Exception )
+{
+    Console.WriteLine(myException.exMessageList[3]);
+}
+
+finally
+{
+    Console.WriteLine("Done");
+}*/
+
 
 
 

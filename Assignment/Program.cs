@@ -107,7 +107,7 @@ policy.RenewPolicy(Convert.ToDouble(Console.ReadLine()));
 policy.DisplayPolicyDetails();
 policy.RenewPolicy();
 policy.DisplayPolicyDetails();
-*/
+
 
 LifeInsurance lifeInsurance = new("aa", 12, 500000, 12, 0.3f);
 lifeInsurance.CalculatePremium();
@@ -116,6 +116,8 @@ lifeInsurance.DisplayLifeInsurancePolicyDetails();
 CarInsurance carInsurance = new("bb", 13, 600000,4);
 carInsurance.CalculatePremium();
 carInsurance.DisplayCarInsurancePolicyDetails();
+*/
+List<Customer> customerArray = new List<Customer>();
 
 
 
