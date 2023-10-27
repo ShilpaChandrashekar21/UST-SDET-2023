@@ -33,21 +33,29 @@ namespace Assignment
             fileStream.Close();
         }
 
-        public void ReadMedicalHistoryFromFile()
+        public void ReadMedicalHistoryFromFile(int patientID)
         {
-            FileStream fileStream = new FileStream("D:\\\\SDET Training\\\\BasicSolution\\\\Files\\\\MedicalHistory.txt",
-                FileMode.Open, FileAccess.Read);
-            StreamReader streamReader = new StreamReader(fileStream);
-            streamReader.BaseStream.Seek(0, SeekOrigin.Begin);
-            string? str = streamReader.ReadLine();
-
-            while (str != null)
+            if (PatientId == patientID)
             {
-                Console.WriteLine(str);
-                str = streamReader.ReadLine();
+                FileStream fileStream = new FileStream("D:\\\\SDET Training\\\\BasicSolution\\\\Files\\\\MedicalHistory.txt",
+               FileMode.Open, FileAccess.Read);
+                StreamReader streamReader = new StreamReader(fileStream);
+                streamReader.BaseStream.Seek(0, SeekOrigin.Begin);
+                string? str = streamReader.ReadLine();
+
+                while (str != null)
+                {
+                    Console.WriteLine(str);
+                    str = streamReader.ReadLine();
+                }
+                streamReader.Close();
+                fileStream.Close();
             }
-            streamReader.Close();
-            fileStream.Close();
+            else
+            {
+                Console.WriteLine("Patient ID doesn't exist");
+            }
+           
         }
     }
 }

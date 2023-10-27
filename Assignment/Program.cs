@@ -287,30 +287,42 @@ switch (ch)
         break;
 }
 */
-Console.WriteLine("Choose");
-Console.WriteLine("1->Add Medical History\n2->View Medical History\n 3-> exit");
-int ch = Convert.ToInt32(Console.ReadLine());
+
 MedicalHistory medicalHistory = new MedicalHistory();
 medicalHistory.RecordId = 11;
 medicalHistory.PatientId = 102;
 medicalHistory.Description = " Paracetamol for 2 days";
 medicalHistory.Date = DateTime.UtcNow;
-switch (ch)
-{
-    case 1:
 
-        medicalHistory.AddMedicalHistoryToFile(medicalHistory);
-        break;
-    case 2:
-        medicalHistory.ReadMedicalHistoryFromFile();
-        break;
-    case 3:
-        Console.WriteLine("You got exited from execution");
-        break;
-    default:
-        Console.WriteLine("Please check the number");
-        break;
-}
+
+    Console.WriteLine("Choose");
+    Console.WriteLine("1->Add Medical History\n2->View Medical History\n 3-> exit");
+    int ch = Convert.ToInt32(Console.ReadLine());
+    switch (ch)
+    {
+        case 1:
+
+            medicalHistory.AddMedicalHistoryToFile(medicalHistory);
+            break;
+
+        case 2:
+            Console.WriteLine("Enter the Patient Id to read");
+            medicalHistory.ReadMedicalHistoryFromFile(Convert.ToInt32(Console.ReadLine()));
+            break;
+        case 3:
+            Console.WriteLine("You got exited from execution");
+            break;
+        default:
+            Console.WriteLine("Please check the number");
+            break;
+    }
+    
+
+
+
+
+
+
 
 
 
