@@ -128,12 +128,16 @@ new(12, "jim", "12345", 2000),
 new(13, "jam", "123456", 3000)
 };
 
-foreach(Customer cust in customerArray)
+
+Console.WriteLine("Customer Details");
+Console.WriteLine();
+foreach (Customer cust in customerArray)
 {
 Console.WriteLine("Customer Name: "+cust.Name+
 " Customer ID : "+cust.CustomerId+" Phone Number: "+
 cust.PhoneNumber+" Balance : "+cust.Balance);
 }
+Console.WriteLine();
 bool IsCustAvail = false;
 
 foreach (Customer cust in customerArray)
@@ -151,7 +155,7 @@ if (!IsCustAvail)
 {
 Console.WriteLine("Customer not found");
 }
-*/
+
 
 List<CallRecord> callRecords = new List<CallRecord>()
 {
@@ -160,13 +164,16 @@ List<CallRecord> callRecords = new List<CallRecord>()
     new(789,"1234","8 min")
 
 };
+Console.WriteLine("The Call Records Details");
 
-/*foreach(CallRecord call in callRecords)
+foreach(CallRecord call in callRecords)
 {
     Console.WriteLine("Call Id: "+call.CallID+" Phone Number: "+call.PhoneNumber+
         " CallTime: "+call.CallTime);
     
 }
+Console.WriteLine();
+Console.WriteLine("Calls with the specific Phone Number");
 foreach(CallRecord calls in callRecords)
 {
     calls.CallHistory(calls);
@@ -185,31 +192,126 @@ foreach(CallRecord calls in callRecords)
         callCount[calls.PhoneNumber] = 1;
     }
 }
+
+Console.WriteLine();
+Console.WriteLine("Total Calls with the specific Phone Number");
 foreach(var i in callCount)
 {
     Console.WriteLine(" Phone Number: "+i.Key+ " - Total Calls: "+ i.Value);
 }
-*/
-
+Console.WriteLine();
 
 try
 {
     Patient patient1 = new(11, "aa", 25, "diabetics");
     patient1.AddPatient(patient1);
+    Console.WriteLine();
 }
 catch(AgeException ex)
 {
     Console.WriteLine(ex.Message);
+    Console.WriteLine();
 }
 try
 {
     Patient patient2 = new(11, "aa", 125, "diabetics");
     patient2.AddPatient(patient2);
+    Console.WriteLine();
 }
 catch (AgeException ex)
 {
     Console.WriteLine(ex.Message);
+    Console.WriteLine();
 }
+
+try
+{
+    MedicalRecord medicalRecord = new MedicalRecord(11, "Sam", 25, "HeadAche", 101, 5000);
+    medicalRecord.AddMedicalRecord(medicalRecord);
+}
+catch(InvalidMedicalRecordException e)
+{
+    Console.WriteLine(e.Message);
+}
+catch(InvalidPatientDataException e)
+{
+    Console.WriteLine(e.Message);
+}
+
+try
+{
+    MedicalRecord medicalRecord1 = new MedicalRecord(100, "", 25, "", 101, 5000);
+    medicalRecord1.AddMedicalRecord(medicalRecord1);
+}
+catch (InvalidMedicalRecordException e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (InvalidPatientDataException e)
+{
+    Console.WriteLine(e.Message);
+}
+
+try
+{
+    MedicalRecord medicalRecord2 = new MedicalRecord(10, "Sil", 25, "Fever", 101, -5000);
+    medicalRecord2.AddMedicalRecord(medicalRecord2);
+}
+catch (InvalidMedicalRecordException e)
+{
+    Console.WriteLine(e.Message);
+}
+catch (InvalidPatientDataException e)
+{
+    Console.WriteLine(e.Message);
+}
+
+Console.WriteLine("Choose");
+Console.WriteLine("1->Add Patient\n2->View Patient\n 3-> exit");
+int ch = Convert.ToInt32(Console.ReadLine());
+Patient patient = new Patient(12, "aa", 24, "diabetics");
+switch (ch)
+{
+    case 1:
+        
+        patient.AddPatientToFile(patient);
+        break;
+    case 2:
+        patient.ReadPatientDetailsFromFile();
+        break;
+    case 3:
+        Console.WriteLine("You got exited from execution");
+        break;
+    default:
+        Console.WriteLine("Please check the number");
+        break;
+}
+*/
+Console.WriteLine("Choose");
+Console.WriteLine("1->Add Medical History\n2->View Medical History\n 3-> exit");
+int ch = Convert.ToInt32(Console.ReadLine());
+MedicalHistory medicalHistory = new MedicalHistory();
+medicalHistory.RecordId = 11;
+medicalHistory.PatientId = 102;
+medicalHistory.Description = " Paracetamol for 2 days";
+medicalHistory.Date = DateTime.UtcNow;
+switch (ch)
+{
+    case 1:
+
+        medicalHistory.AddMedicalHistoryToFile(medicalHistory);
+        break;
+    case 2:
+        medicalHistory.ReadMedicalHistoryFromFile();
+        break;
+    case 3:
+        Console.WriteLine("You got exited from execution");
+        break;
+    default:
+        Console.WriteLine("Please check the number");
+        break;
+}
+
 
 
 

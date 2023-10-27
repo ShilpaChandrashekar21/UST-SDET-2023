@@ -220,7 +220,7 @@ GenericCollection genericCollection = new GenericCollection();
 genericCollection.DictionaryHandling();
 */
 
-ExceptionHandling exception = new(12, 101);
+/*ExceptionHandling exception = new(12, 101);
 try
 {
     
@@ -241,7 +241,7 @@ try
 catch (Num2Exception ex)
 {
     Console.WriteLine(ex.Message);
-}
+}*/
 
 /*try
 {
@@ -285,6 +285,17 @@ finally
 {
     Console.WriteLine("Done");
 }*/
+
+FileOperations file=new FileOperations();
+//file.CreateFile();
+//file.WriteFile();
+
+//file.ReadFile();
+//file.CopyMoveTo();
+
+//file.DeleteFile();
+
+file.FileProperties();
 
 
 

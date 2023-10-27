@@ -12,7 +12,9 @@ namespace Assignment.UserException
             new Dictionary<int, string>()
             {
                
-                {1, "Age should be between 0 and 120" }
+                {1, "Age should be between 0 and 120" },
+                {2, "Patient name and Diagnosis cannot be null"},
+                {3, "Treatment Cost cannot be null" }
                
             };
     }
@@ -23,5 +25,23 @@ namespace Assignment.UserException
         {
         }
     }
+
+    internal class InvalidPatientDataException : Exception
+    {
+        public InvalidPatientDataException(string? message) : base(message)
+        {
+        }
+    }
+
+    internal class InvalidMedicalRecordException : Exception
+    {
+        public InvalidMedicalRecordException(string? message) : base(message)
+        {
+        }
+    }
+
+
+
+
 
 }
