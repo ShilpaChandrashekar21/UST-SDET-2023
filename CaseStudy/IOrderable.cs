@@ -8,7 +8,7 @@ namespace CaseStudy
 {
     internal interface IOrderable
     {
-        public void PlaceOrders(int quantity,Product p);
+        public void PlaceOrders(int quantity,List<Product> p);
         public void ProcessPayment(int orderId,Order order);
         public void DeliverOrders( string? phoneNumber ,Order order);
     }

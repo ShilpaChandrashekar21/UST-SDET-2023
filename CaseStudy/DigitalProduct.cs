@@ -9,29 +9,19 @@ namespace CaseStudy
 {
     internal class DigitalProduct : Product, IOrderable
     {
-        /*public DigitalProduct(int productID, string? name,
-            double price, int stockQuantity, string? downloadLink, string? fileFormat) : 
-            base(productID, name, price, stockQuantity)
-        {
-            DownloadLink = downloadLink;
-            FileFormat = fileFormat;
-            ProductID = productID;
-            Name = name;
-            Price = price;
-            StockQuantity = stockQuantity;
-        }*/
+        
 
         public string? DownloadLink { get; set; }
         public string? FileFormat { get; set;}
-        public List<Product> AddToCartList1
-        { get; set; } = new List<Product>();
-        List<Order> OrderList = new List<Order>();
+        public List<Product> AddToCartList1 = new List<Product>();
+        public List<Order> OrderList = new List<Order>();
+        public static List<DigitalProduct> digitalProductsList = new List<DigitalProduct>();
 
-        public void DigitalCart(string? pName, Product dP)
+        public void DigitalCart(string? pName, List<Product> dP)
         {
             if (Name.Equals(pName))
             {
-                AddToCartList1.Add(dP);
+                AddToCartList1.AddRange(dP);
                 Console.WriteLine("Product Added to cart");
             }
             else
@@ -41,9 +31,9 @@ namespace CaseStudy
             }
         }
 
-        public void PlaceOrders(int quantity, Product dProd)
+        public void PlaceOrders(int quantity, List<Product> dProd)
         {
-            if (AddToCartList1.Count != 0 && dProd.StockQuantity>=quantity)
+            if (AddToCartList1.Count != 0 && StockQuantity>=quantity)
             {
                 Console.WriteLine("Order Placed");
             }

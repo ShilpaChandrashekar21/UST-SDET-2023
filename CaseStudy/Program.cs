@@ -101,17 +101,14 @@ switch (Convert.ToInt32(Console.ReadLine()))
 }*/
 
 
-/*PhysicalProduct[] product = new PhysicalProduct[3];
-product[0] = new(10, "soap", 22, 10, 10, "2 X 4");
-product[1] = new(11, "oil", 115, 15, 100, "3 X 4");
-product[2] = new(12, "chair", 2000, 16, 50, "5 X 4");
-*/
-/*PhysicalProduct product1 = new PhysicalProduct(10, "soap", 22, 10, 10, "2 X 4");
-PhysicalProduct product2 = new PhysicalProduct(11, "oil", 115, 15, 100, "3 X 4");*/
-List<PhysicalProduct> productList = new List<PhysicalProduct>();
-List<DigitalProduct> digitalProducts = new List<DigitalProduct>();
+
+
+
+
 string? pro, phNumber, response;
 int quan, cusId;
+
+
 PhysicalProduct product = new PhysicalProduct();
 product.Name = "soap";
 product.ProductID = 10;
@@ -120,21 +117,11 @@ product.StockQuantity = 20;
 product.Weight = 2;
 product.Dimension = "2x2";
 
-PhysicalProduct product1 = new PhysicalProduct();
-product.Name = "oil";
-product.ProductID = 10;
-product.Price = 20;
-product.StockQuantity = 20;
-product.Weight = 2;
-product.Dimension = "2x2";
 
-productList.Add(product);
-productList.Add(product1);
-/*foreach (var p in productList)
-{
-    Console.WriteLine("Product Name: " + p.Name + " Product ID: "
-        + p.ProductID + " Price: " + p.Price);
-}*/
+
+Product.Products.Add(product);
+
+
 DigitalProduct digitalProduct = new DigitalProduct();
 digitalProduct.Name = "photo";
 digitalProduct.ProductID = 110;
@@ -143,7 +130,7 @@ digitalProduct.StockQuantity = 20;
 digitalProduct.DownloadLink = "https://photo.com";
 digitalProduct.FileFormat = "jpeg";
 
-digitalProducts.Add(digitalProduct);
+Product.Products.Add(digitalProduct);
 
 Order order = new Order();
 Console.WriteLine("Enter the customer Id");
@@ -167,17 +154,18 @@ while (true)
                 {
                     Console.WriteLine("enter the product name you wish to buy");
                     pro = Console.ReadLine();
+                    
+
+                    product.PhysicalCart(pro, Product.Products);
                     Console.WriteLine("enter the product quantity");
                     quan = Convert.ToInt32(Console.ReadLine());
-
-                    product.PhysicalCart(pro, product);
                     Console.WriteLine("Do you want to order");
                     string? res = Console.ReadLine();
                     if (res.Equals("yes"))
                     {
                         try
                         {
-                            product.PlaceOrders(quan, product);
+                            product.PlaceOrders(quan, Product.Products);
                         }
 
                         catch (PlaceOrderException e)
@@ -204,14 +192,14 @@ while (true)
                     Console.WriteLine("enter the product quantity");
                     quan = Convert.ToInt32(Console.ReadLine());
 
-                    digitalProduct.DigitalCart(pro, digitalProduct);
+                    digitalProduct.DigitalCart(pro, Product.Products);
                     Console.WriteLine("Do you want to order");
                     string? res = Console.ReadLine();
                     if (res.Equals("yes"))
                     {
                         try
                         {
-                            product.PlaceOrders(quan, product);
+                            product.PlaceOrders(quan, Product.Products);
                         }
 
                         catch (PlaceOrderException e)
@@ -232,7 +220,7 @@ while (true)
             case 2:Console.WriteLine("Products in cart");
             if (product.AddToCartList.Count > 0)
             {
-                foreach (var p in productList)
+                foreach (var p in PhysicalProduct.PhysicalProductList)
                 {
                     Console.WriteLine("Product Name: " + p.Name + " Product ID: "
                         + p.ProductID + " Price: " + p.Price);
@@ -244,7 +232,7 @@ while (true)
             }
             if(digitalProduct.AddToCartList1.Count>0)
             {
-                foreach (var item in digitalProducts)
+                foreach (var item in DigitalProduct.digitalProductsList)
                 {
                     Console.WriteLine("Product Name: " + item.Name + " Product ID: "
                         + item.ProductID + " Price: " + item.Price);
@@ -256,32 +244,51 @@ while (true)
             }
             
             break;
-            case 3:Console.WriteLine("Payment");
-            try
+            case 3:if(product.AddToCartList.Count==0 || 
+                digitalProduct.AddToCartList1.Count == 0)
             {
-                Console.WriteLine("enter the customerId to" +
-                    " process the payment");
-                cusId = Convert.ToInt32(Console.ReadLine());
-                product.ProcessPayment(cusId, order);
+                Console.WriteLine("No Products to process the payment");
             }
-            catch (ProcessPaymentException e)
+            else
             {
-                Console.WriteLine(e.Message);
-                
+                Console.WriteLine("Payment");
+                try
+                {
+                    Console.WriteLine("enter the customerId to" +
+                        " process the payment");
+                    cusId = Convert.ToInt32(Console.ReadLine());
+                    product.ProcessPayment(cusId, order);
+                }
+                catch (ProcessPaymentException e)
+                {
+                    Console.WriteLine(e.Message);
+
+                }
             }
+            
             break;
-            case 4:Console.WriteLine("Delivery");
-            try
+            case 4:
+            if (product.AddToCartList.Count == 0 ||
+                digitalProduct.AddToCartList1.Count == 0)
             {
-                Console.WriteLine("enter the Phone Number to receive your order");
-                phNumber = Console.ReadLine();
-                product.DeliverOrders(phNumber, order);
+                Console.WriteLine("No products to deliver");
             }
-            catch (DeliverOrderException e)
+            else
             {
-                Console.WriteLine(e.Message);
-                
+                Console.WriteLine("Delivery");
+                try
+                {
+                    Console.WriteLine("enter the Phone Number to receive your order");
+                    phNumber = Console.ReadLine();
+                    product.DeliverOrders(phNumber, order);
+                }
+                catch (DeliverOrderException e)
+                {
+                    Console.WriteLine(e.Message);
+
+                }
             }
+               
             break;
             case 5:Console.WriteLine("you exited");
             Environment.Exit(0);

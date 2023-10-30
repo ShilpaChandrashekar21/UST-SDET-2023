@@ -9,30 +9,21 @@ namespace CaseStudy
 {
     internal class PhysicalProduct : Product, IOrderable
     {
-        /*public PhysicalProduct(int productID, string? name, 
-            double price, int stockQuantity, int weight,string? dimension) :
-            base(productID, name, price, stockQuantity)
-        {
-            Weight = weight;
-            Dimension = dimension;
-            ProductID = productID;
-            Name = name;
-            Price = price;
-            StockQuantity = stockQuantity;
-        }
-         public PhysicalProduct() { }*/
+
 
         public int Weight { get; set; }
         public string? Dimension { get; set; }
+
         public List<Product> AddToCartList= new List<Product>();
-        List<Order> OrderList= new List<Order>();
-        
-        public void PhysicalCart(string? pName,Product p)
+        public List<Order> OrderList= new List<Order>();
+       public static List<PhysicalProduct> PhysicalProductList = new List<PhysicalProduct>();
+
+        public void PhysicalCart(string? pName,List<Product> p)
         {
             if(Name.Equals(pName))
             {
                 
-                AddToCartList.Add(p);
+                AddToCartList.AddRange(p);
                 Console.WriteLine("Product Added to cart");
             }
             else
@@ -42,11 +33,11 @@ namespace CaseStudy
             }
         }
 
-        public void PlaceOrders(int quantity,Product prod)
+        public void PlaceOrders(int quantity,List<Product>prod)
         {
             
             
-            if (AddToCartList.Count != 0 && prod.StockQuantity>=quantity)
+            if (AddToCartList.Count != 0 && StockQuantity >= quantity)
             {
                 
                 Console.WriteLine("Order Placed");
@@ -66,6 +57,7 @@ namespace CaseStudy
             }
             else
             {
+
                 throw new ProcessPaymentException(CustomExceptions.messageList["PS"]);
             }
         }
