@@ -12,6 +12,7 @@ namespace CaseStudy
         private int CustomerId;
         private string? PhoneNumber;
 
+
         public string? CustomerName1 { get => CustomerName; 
             set => CustomerName = value; }
         public int CustomerId1 { get => CustomerId;
