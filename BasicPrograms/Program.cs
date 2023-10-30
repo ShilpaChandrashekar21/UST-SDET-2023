@@ -286,7 +286,7 @@ finally
     Console.WriteLine("Done");
 }*/
 
-FileOperations file=new FileOperations();
+/*FileOperations file=new FileOperations();
 //file.CreateFile();
 //file.WriteFile();
 
@@ -296,8 +296,30 @@ FileOperations file=new FileOperations();
 //file.DeleteFile();
 
 file.FileProperties();
+*/
+
+/*GenericsExample<int> g1 = new GenericsExample<int>(10, 20);
+Console.WriteLine(g1.Val1 + " " +g1.Val2);
+
+GenericsExample<double> g2 = new GenericsExample<double>(10.99, 20.80);
+Console.WriteLine(g2.Val1 + " " + g2.Val2);
+
+GenericsExample<string> g3 = new GenericsExample<string>("hi", "welcome");
+Console.WriteLine(g3.Val1 +" "+ g3.Val2);
+
+GenericsExample<bool> g4 = new GenericsExample<bool>(true, false);
+Console.WriteLine(g4.Val1 +" "+ g4.Val2);
+
+*/
 
 
+/*GenericsExample<int> genericsExample= 
+    new GenericsExample<int>(new int[3] {10,20,30});
+genericsExample.Display();*/
+
+int n1=10, n2=20;
+GenericsExample<int>.Swap(ref n1,ref n2);
+Console.WriteLine("n1: "+n1+" n2: " +n2);
 
 
 

@@ -10,6 +10,15 @@ namespace CaseStudy
     {
        
        public static List<Product> Products = new List<Product>();
+
+        /*public Product(int productID, string? name, double price, int stockQuantity)
+        {
+            ProductID = productID;
+            Name = name;
+            Price = price;
+            StockQuantity = stockQuantity;
+        }*/
+
         public int ProductID { get; set; }
         public string? Name { get; set; }
         public double Price  { get; set; }

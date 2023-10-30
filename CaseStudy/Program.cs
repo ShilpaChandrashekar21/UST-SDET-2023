@@ -133,6 +133,8 @@ digitalProduct.FileFormat = "jpeg";
 Product.Products.Add(digitalProduct);
 
 Order order = new Order();
+Console.WriteLine("Welcome");
+Console.WriteLine("Enter your details");
 Console.WriteLine("Enter the customer Id");
 order.CustomerId1 = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("enter the phone number");
@@ -140,6 +142,7 @@ order.PhoneNumber1 = Console.ReadLine();
 
 while (true)
     {
+
         Console.WriteLine("1->To Shop\n2-> To view cart\n" +
             "3->for Payment\n 4-> Delivery details\n5->exit");
         int ch=Convert.ToInt32(Console.ReadLine());
@@ -165,7 +168,8 @@ while (true)
                     {
                         try
                         {
-                            product.PlaceOrders(quan, Product.Products);
+                            product.PlaceOrders(quan, 
+                                Product.Products);
                         }
 
                         catch (PlaceOrderException e)
@@ -192,14 +196,16 @@ while (true)
                     Console.WriteLine("enter the product quantity");
                     quan = Convert.ToInt32(Console.ReadLine());
 
-                    digitalProduct.DigitalCart(pro, Product.Products);
+                    digitalProduct.DigitalCart(pro, 
+                        Product.Products);
                     Console.WriteLine("Do you want to order");
                     string? res = Console.ReadLine();
                     if (res.Equals("yes"))
                     {
                         try
                         {
-                            product.PlaceOrders(quan, Product.Products);
+                            digitalProduct.PlaceOrders(quan, 
+                                Product.Products);
                         }
 
                         catch (PlaceOrderException e)
@@ -220,11 +226,10 @@ while (true)
             case 2:Console.WriteLine("Products in cart");
             if (product.AddToCartList.Count > 0)
             {
-                foreach (var p in PhysicalProduct.PhysicalProductList)
-                {
-                    Console.WriteLine("Product Name: " + p.Name + " Product ID: "
-                        + p.ProductID + " Price: " + p.Price);
-                }
+                
+                    Console.WriteLine("Product Name: " + product.Name + " Product ID: "
+                        + product.ProductID + " Price: " + product.Price);
+                
             }
             else
             {
@@ -232,11 +237,10 @@ while (true)
             }
             if(digitalProduct.AddToCartList1.Count>0)
             {
-                foreach (var item in DigitalProduct.digitalProductsList)
-                {
-                    Console.WriteLine("Product Name: " + item.Name + " Product ID: "
-                        + item.ProductID + " Price: " + item.Price);
-                }
+                
+                    Console.WriteLine("Product Name: " + digitalProduct.Name + " Product ID: "
+                        + digitalProduct.ProductID + " Price: " + digitalProduct.Price);
+                
             }
             else
             {
@@ -244,14 +248,15 @@ while (true)
             }
             
             break;
-            case 3:if(product.AddToCartList.Count==0 || 
+            case 3:
+            if(product.AddToCartList.Count==0 && 
                 digitalProduct.AddToCartList1.Count == 0)
             {
                 Console.WriteLine("No Products to process the payment");
             }
-            else
+            else if(product.AddToCartList.Count > 0)
             {
-                Console.WriteLine("Payment");
+                Console.WriteLine("---Payment------");
                 try
                 {
                     Console.WriteLine("enter the customerId to" +
@@ -265,17 +270,33 @@ while (true)
 
                 }
             }
+            else if(digitalProduct.AddToCartList1.Count > 0)
+            {
+                Console.WriteLine("---Payment------");
+                try
+                {
+                    Console.WriteLine("enter the customerId to" +
+                        " process the payment");
+                    cusId = Convert.ToInt32(Console.ReadLine());
+                    digitalProduct.ProcessPayment(cusId, order);
+                }
+                catch (ProcessPaymentException e)
+                {
+                    Console.WriteLine(e.Message);
+
+                }
+            }
             
             break;
             case 4:
-            if (product.AddToCartList.Count == 0 ||
+            if (product.AddToCartList.Count == 0 &&
                 digitalProduct.AddToCartList1.Count == 0)
             {
                 Console.WriteLine("No products to deliver");
             }
-            else
+            else if (product.AddToCartList.Count > 0)
             {
-                Console.WriteLine("Delivery");
+                Console.WriteLine("---Delivery---");
                 try
                 {
                     Console.WriteLine("enter the Phone Number to receive your order");
@@ -288,6 +309,22 @@ while (true)
 
                 }
             }
+            else if (digitalProduct.AddToCartList1.Count > 0)
+                {
+                    Console.WriteLine("---Delivery---");
+                    try
+                    {
+                        Console.WriteLine("enter the Phone Number to receive your order");
+                        phNumber = Console.ReadLine();
+                        digitalProduct.DeliverOrders(phNumber, order);
+                    }
+                    catch (DeliverOrderException e)
+                    {
+                        Console.WriteLine(e.Message);
+
+                    }
+                }
+            
                
             break;
             case 5:Console.WriteLine("you exited");

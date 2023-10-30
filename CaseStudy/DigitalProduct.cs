@@ -15,7 +15,18 @@ namespace CaseStudy
         public string? FileFormat { get; set;}
         public List<Product> AddToCartList1 = new List<Product>();
         public List<Order> OrderList = new List<Order>();
-        public static List<DigitalProduct> digitalProductsList = new List<DigitalProduct>();
+
+        public static List<DigitalProduct> digitalProductsList=new List<DigitalProduct>();
+        /*public DigitalProduct(int productID, string? name, 
+            double price, int stockQuantity,string? down,string? format) : base(productID, name, price, stockQuantity)
+        {
+            ProductID = productID;
+            Name = name;
+            Price = price;
+            StockQuantity = stockQuantity;
+            DownloadLink = down;
+            FileFormat = format;
+        }*/
 
         public void DigitalCart(string? pName, List<Product> dP)
         {
@@ -46,7 +57,8 @@ namespace CaseStudy
 
         public void ProcessPayment(int orderId, Order order)
         {
-            if (order.OrderId == orderId)
+            if (AddToCartList1.Count != 0 && 
+                order.CustomerId1 == orderId)
             {
                 Console.WriteLine("Payment successful");
                 OrderList.Add(order);
@@ -59,7 +71,7 @@ namespace CaseStudy
 
         public void DeliverOrders(string? pNum, Order order)
         {
-            if (order.PhoneNumber1.Equals(pNum))
+            if (AddToCartList1.Count != 0 && order.PhoneNumber1.Equals(pNum))
             {
                 Console.WriteLine("U can download the order");
             }

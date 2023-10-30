@@ -18,7 +18,19 @@ namespace CaseStudy
         public List<Order> OrderList= new List<Order>();
        public static List<PhysicalProduct> PhysicalProductList = new List<PhysicalProduct>();
 
-        public void PhysicalCart(string? pName,List<Product> p)
+        /*public PhysicalProduct(int productID, string? name,
+            double price, int stockQuantity,int w,string?d) : 
+            base(productID, name, price, stockQuantity)
+        {
+            ProductID = productID;
+            Name = name;
+            Price = price;
+            StockQuantity = stockQuantity;
+            Weight = w;
+            Dimension = d;
+        }*/
+
+        public  void PhysicalCart(string? pName,List<Product> p)
         {
             if(Name.Equals(pName))
             {
@@ -50,7 +62,8 @@ namespace CaseStudy
 
         public void ProcessPayment(int custId,Order order)
         {
-            if(order.CustomerId1 == custId)
+            if(AddToCartList.Count != 0 && 
+                order.CustomerId1 == custId)
             {
                 Console.WriteLine("Payment successful");
                 OrderList.Add(order);
@@ -64,7 +77,7 @@ namespace CaseStudy
 
         public void DeliverOrders(string? pNum,Order order)
         {
-            if (order.PhoneNumber1.Equals(pNum))
+            if (OrderList.Count!=0 && order.PhoneNumber1.Equals(pNum))
             {
                 Console.WriteLine("Order Delivered");
             }
