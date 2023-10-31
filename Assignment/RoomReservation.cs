@@ -6,40 +6,59 @@ using System.Threading.Tasks;
 
 namespace Assignment
 {
-    internal class RoomReservation<T> : HotelRoom
+    internal class RoomReservation<T> where T  : HotelRoom
     {
-        
-        public void Booking<T>(int roomNum)
+        private List<T> _rooms;
+
+        public RoomReservation(List<T> rooms)
         {
-            if( RoomNumber == roomNum)
+            _rooms = rooms;
+        }
+
+        
+        public void Booking(int roomNum)
+        {
+            bool book = false;
+            foreach (T room in _rooms)
             {
-                IsBooked = true;
-                Console.WriteLine("Booking confirmed");
+                if (room.RoomNumber == roomNum && room.IsBooked == false)
+                {
+                    room.IsBooked = true;
+                    book  = true;
+                    Console.WriteLine("Booking confirmed");
+                    break;
+                }
             }
-            else
-            {
-                Console.WriteLine("Booking not available" +
-                    " with this Room number");
-            }
-              
+
+                if (!book) 
+                {
+                    Console.WriteLine("Room is already booked");
+                }
+
             
             
         }
 
-        public void Cancelation<T>(int roomNum)
+        public void Cancelation(int roomNum)
         {
-            if(RoomNumber == roomNum && IsBooked == true)
+            bool book = false;
+
+            foreach (T room in _rooms)
             {
-                
-                Console.WriteLine("Booking Canceled");
+                if (room.RoomNumber == roomNum && room.IsBooked == true)
+                {
+                    room.IsBooked = false;
+                    book = true;
+                    Console.WriteLine("Cancelled");
+                    break;
+                }
             }
-            else
-            {
-                Console.WriteLine("Cannot cancel because " +
-                    " no booking available with" +
-                    " this Room number");
-            }
-            
+                if (!book) 
+                {
+                    Console.WriteLine("Room is not occupied");
+                }
+
+        
         }
     }
 }

@@ -48,39 +48,198 @@ foreach (var student in studentArray)
 using Assignment;
 using Assignment.UserException;
 
+public delegate void EDelegate();
+public delegate void NDelegate(string name);
+class Program
+{
+    
+    public static void Main(string[] args)
+    {
+        HotelEvents hotelEvents = new HotelEvents();
+        EDelegate del1 = hotelEvents.RegisterToEvent;
+        del1.Invoke();
+        NDelegate del2 = hotelEvents.EventNotification;
+        del2.Invoke("music");
 
+    }
+}
 
-RoomReservation<HotelRoom> SingleRoom = new 
-    RoomReservation<HotelRoom>();
-SingleRoom.RoomNumber = 101;
-SingleRoom.RoomType = "Single";
-SingleRoom.IsBooked = false;
+/*class Program
+{
+    public delegate double Delegate1(EmployeeD employeeD);
 
-RoomReservation<HotelRoom> DoubleRoom = new
-    RoomReservation<HotelRoom>();
-DoubleRoom.RoomNumber = 101;
-DoubleRoom.RoomType = "Double";
-DoubleRoom.IsBooked = false;
+    public static void Main(string[] args)
+    {
+        EmployeeD employee = new EmployeeD(199,"jack",4);
+        Delegate1 del =EmployeeD.BonusCalculation;
 
-RoomReservation<HotelRoom> Suite = new
-    RoomReservation<HotelRoom>();
-Suite.RoomNumber = 101;
-Suite.RoomType = "Suite";
-Suite.IsBooked = false;
+        Console.WriteLine("Employee Id: " + employee.EmployeeId +
+            " Employee Name: " + employee.EmployeeName + " Performance Rating: " +
+            employee.PerformanceRating + " Bonus: " + del.Invoke(employee));
+    }
+}*/
 
-Console.WriteLine("Single");
-SingleRoom.Booking<HotelRoom>(102);
-SingleRoom.Cancelation<HotelRoom>(101);
-Console.WriteLine();
-Console.WriteLine("Suite");
-Suite.Booking<HotelRoom>(101);
-Suite.Cancelation<HotelRoom>(101);
-Console.WriteLine();
-Console.WriteLine("Double");
-DoubleRoom.Booking<HotelRoom>(102);
-DoubleRoom.Cancelation<HotelRoom>(101);
+/*  
+List<HotelRoom> roomList = new List<HotelRoom>()
+      {
+          new(101,"Single",true),
+          new(102,"Double",false),
+          new(103,"Suite",true)
+      };
 
+RoomReservation<HotelRoom> roomReservation = 
+  new RoomReservation<HotelRoom>(roomList);
+roomReservation.Booking(102);
+roomReservation.Cancelation(102);
+*/
 
+/*int op;
+ List<Products<string>> inventory = new List<Products<string>>();
+do
+{
+    Console.WriteLine("1-> Add Products\n 2-> View Product\n 3->Update Product\n " +
+        "4-> Delete Product\n 5-> search product by name\n 6->  search product by id" +
+        "7-> Exit");
+    int ch = Convert.ToInt32(Console.ReadLine());
+    switch (ch)
+    {
+        case 1:
+            Console.WriteLine("enter the ProductID");
+            int proID = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("enter the Product name");
+            string name = Console.ReadLine();
+            Console.WriteLine("enter the price");
+            int price = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("enter the Stock Quantity");
+            int stock = Convert.ToInt32(Console.ReadLine());
+            AddProduct(new Products<string>(proID,name,price,stock));
+            Console.WriteLine("Products Added");
+            break;
+        case 2:
+            foreach (var product in inventory)
+            {
+                Console.WriteLine("Product Id: " + product.ProductId +
+                    " Product Name: " + product.ProductName +
+                    " Price: " + product.Price + " Stock: " + product.QuantityInStock);
+            }
+            break;
+        case 3:Console.WriteLine("Enter the product Id you want to update");
+            
+            UpdateProduct(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("Updated");
+            break;
+        case 4:
+            Console.WriteLine("Enter the product Id you want to delete");
+            RemoveProduct(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("Deleted");
+            break;
+        case 5:
+            Console.WriteLine("Enter the product name");
+            FindBy(Console.ReadLine());
+            break;
+        case 6:
+            Console.WriteLine("Enter the product Id ");
+            FindById(Convert.ToInt32(Console.ReadLine()));
+            break;
+        case 7:
+            Environment.Exit(0);
+            break;
+        default:
+            Console.WriteLine("Invalid");
+            break;
+
+    }
+    Console.WriteLine("do you need to continue\n 1-> yes \n 2-> no");
+    op = Convert.ToInt32(Console.ReadLine());
+
+} while (op == 1);
+
+ void AddProduct(Products<string> prod)
+{
+   
+    inventory.Add(prod);
+
+}
+
+ void UpdateProduct(int prodId)
+{
+    foreach(var product in inventory)
+    {
+        if (inventory.Count > 0 & product.ProductId == prodId)
+        {
+            Console.WriteLine("enter Product ID");
+            product.ProductId = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("enter the price");
+            product.Price = Convert.ToInt64(Console.ReadLine());
+            
+
+        }
+        else
+        {
+            Console.WriteLine(prodId + " doesn't exit");
+            break;
+        }
+    }
+    
+
+}
+
+ void RemoveProduct(int prodId)
+{
+    foreach (var product in inventory)
+    {
+        if (inventory.Count > 0 && product.ProductId == prodId)
+        {
+            inventory.Remove(product);
+        }
+        else
+        {
+            Console.WriteLine(prodId + "doesn't exist");
+            break;
+        }
+    }
+    
+}
+
+ void FindBy(string productName)
+{
+    foreach (var product in inventory)
+    {
+        if (productName.Equals(product.ProductName))
+        {
+            Console.WriteLine("ProductName" + product.ProductName +
+                " Product ID: " + product.ProductId +
+                " Price: " + product.Price + " Stock: " + product.QuantityInStock);
+        }
+        else
+        {
+            Console.WriteLine(productName + "doesn't exist");
+            break;
+        }
+    }
+        
+}
+
+ void FindById(int productId)
+{
+    foreach (var product in inventory)
+    {
+        if (product.ProductId==productId)
+        {
+            Console.WriteLine("ProductName" + product.ProductName +
+                " Product ID: " + product.ProductId +
+                " Price: " + product.Price + " Stock: " + product.QuantityInStock);
+        }
+        else
+        {
+            Console.WriteLine(productId + "doesn't exist");
+            break;
+        }
+    }
+        
+}
+*/
 
 
 

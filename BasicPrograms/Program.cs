@@ -24,6 +24,7 @@ arrayExample.JaggedArray();
 
 using BasicPrograms;
 using BasicPrograms.ExceptionMessage;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 
 //StudentMarks studentMarks = new(3, "ww", "bal", 34, 56, 55, 67, 5);
@@ -321,6 +322,61 @@ genericsExample.Display();*/
 GenericsExample<int>.Swap(ref n1,ref n2);
 Console.WriteLine("n1: "+n1+" n2: " +n2);*/
 
+public delegate void MyDelegate(string text);
+public delegate void MyDelegate2(int num1,int num2);
+
+public delegate int MyDelegate3(int num1, int num2);
+//public delegate void MyDelegate();
+class Program
+{
+
+
+    //with parameter 
+    /* public static void DelCall()
+     {
+
+         MyDelegate del = DelegateExample.Display;
+         del.Invoke("Hello !!");
+     }*/
+
+    // non static method
+    
+    public static void DelCall()
+    {
+        DelegateExample delegateExample = new DelegateExample();
+        MyDelegate del = delegateExample.Display;
+        del.Invoke("Hello !!");
+
+        MyDelegate2 del1 = delegateExample.Add;
+       // del1(10, 20);
+
+        MyDelegate2 del2 = delegateExample.Sub;
+        //del2(20, 20);
+
+        MyDelegate2 delobj = del1 + del2;
+        delobj(30, 20);
+
+        MyDelegate3 del3 = delegateExample.AddR;
+        Console.WriteLine(del3(10, 20));
+    }
+
+
+    /*public static void DelCall()
+    {
+        MyDelegate del = DelegateExample.Display;
+        del.Invoke();
+    }*/
+    
+    public static void Main(string[] args)
+    {
+        /*MyDelegate del = DelegateExample.Display;
+        del.Invoke();*/
+        DelCall();
+
+        
+        
+    }
+}
 
 
 
