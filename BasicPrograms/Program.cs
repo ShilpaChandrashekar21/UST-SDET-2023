@@ -317,9 +317,11 @@ Console.WriteLine(g4.Val1 +" "+ g4.Val2);
     new GenericsExample<int>(new int[3] {10,20,30});
 genericsExample.Display();*/
 
-int n1=10, n2=20;
+/*int n1=10, n2=20;
 GenericsExample<int>.Swap(ref n1,ref n2);
-Console.WriteLine("n1: "+n1+" n2: " +n2);
+Console.WriteLine("n1: "+n1+" n2: " +n2);*/
+
+
 
 
 

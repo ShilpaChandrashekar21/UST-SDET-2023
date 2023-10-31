@@ -47,6 +47,44 @@ foreach (var student in studentArray)
 
 using Assignment;
 using Assignment.UserException;
+
+
+
+RoomReservation<HotelRoom> SingleRoom = new 
+    RoomReservation<HotelRoom>();
+SingleRoom.RoomNumber = 101;
+SingleRoom.RoomType = "Single";
+SingleRoom.IsBooked = false;
+
+RoomReservation<HotelRoom> DoubleRoom = new
+    RoomReservation<HotelRoom>();
+DoubleRoom.RoomNumber = 101;
+DoubleRoom.RoomType = "Double";
+DoubleRoom.IsBooked = false;
+
+RoomReservation<HotelRoom> Suite = new
+    RoomReservation<HotelRoom>();
+Suite.RoomNumber = 101;
+Suite.RoomType = "Suite";
+Suite.IsBooked = false;
+
+Console.WriteLine("Single");
+SingleRoom.Booking<HotelRoom>(102);
+SingleRoom.Cancelation<HotelRoom>(101);
+Console.WriteLine();
+Console.WriteLine("Suite");
+Suite.Booking<HotelRoom>(101);
+Suite.Cancelation<HotelRoom>(101);
+Console.WriteLine();
+Console.WriteLine("Double");
+DoubleRoom.Booking<HotelRoom>(102);
+DoubleRoom.Cancelation<HotelRoom>(101);
+
+
+
+
+
+
 /*
 ElectronicsProduct electronicsProduct = new(5, "fan", 870, 8);
 electronicsProduct.DisplayProduct();
@@ -288,7 +326,7 @@ switch (ch)
 }
 */
 
-MedicalHistory medicalHistory = new MedicalHistory();
+/*MedicalHistory medicalHistory = new MedicalHistory();
 medicalHistory.RecordId = 11;
 medicalHistory.PatientId = 102;
 medicalHistory.Description = " Paracetamol for 2 days";
@@ -316,7 +354,7 @@ medicalHistory.Date = DateTime.UtcNow;
             Console.WriteLine("Please check the number");
             break;
     }
-    
+    */
 
 
 
