@@ -2,6 +2,8 @@
 /*
 Console.WriteLine("Hello, World!");
 
+
+
 Student student = new Student("paul");
 Console.WriteLine(student.CalculateAverage());
 
@@ -46,6 +48,75 @@ foreach (var student in studentArray)
 */
 
 using Assignment;
+
+TouristDestination tourist = new TouristDestination();
+
+ List<TouristDestination> tours = new List<TouristDestination>()
+ {
+            new("Manali","Himachal Pradesh",5,2500),
+            new("Kashmir","Jammu & Kashmir",4.5,4000),
+            new("Paris","France",4.8,500000),
+            new("Nandi Hills","Bangalore",4.2,1000),
+
+        };
+
+Console.WriteLine("Top-Rated");
+tourist.TopRated(tours);
+Console.WriteLine("List of Destination from low to high");
+tourist.PriceAscending(tours);
+Console.WriteLine("Enter the destination name");
+string? resp = Console.ReadLine();
+tourist.FilterDestination(resp, tours);
+
+/*int ch, res;
+List<TourismDestination> destinations = new List<TourismDestination>()
+{
+    new("Manali","India",5),
+    new("Kashmir","India",4),
+    new("Paris","France",5),
+    new("Nandi Hills","India",5),
+    new("AA","BB",2)
+};
+//TourismDestination.tourismDestinations = destinations;
+do
+{
+    Console.WriteLine("1-> Add Tourism Details\n2->View Destination list based on rating" +
+       "\n3->exit");
+    ch = Convert.ToInt32(Console.ReadLine());
+    switch (ch)
+    {
+        case 1:
+            Console.WriteLine("Enter the Name of destination");
+            string? n = Console.ReadLine();
+            Console.WriteLine("Enter the Name of Country");
+            string? c = Console.ReadLine();
+            Console.WriteLine("Rate your experience");
+            int r = Convert.ToInt32(Console.ReadLine());
+            if  (r>5 || r<1)
+            {
+                Console.WriteLine("Please enter the rating between 1 to 5");
+            }
+            destinations.Add(new(n,c,r));
+            break;
+        case 2:
+            Console.WriteLine("Ratings");
+            TourismDestination.SortOnRating(destinations);
+            break;
+        case 3:
+            Environment.Exit(0);
+            break;
+        default:
+            Console.WriteLine("Invalid option");
+            break;
+
+
+    }
+    Console.WriteLine("Do you wish to continue\n1->yes\n2->no");
+    res = Convert.ToInt32(Console.ReadLine());
+
+} while (res == 1);
+*/
+/*using Assignment;
 using Assignment.UserException;
 
 public delegate void EDelegate();
@@ -62,7 +133,7 @@ class Program
         del2.Invoke("music");
 
     }
-}
+}*/
 
 /*class Program
 {
