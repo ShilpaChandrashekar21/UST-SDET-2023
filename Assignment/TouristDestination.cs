@@ -8,6 +8,7 @@ namespace Assignment
 {
     internal class TouristDestination
     {
+
         public TouristDestination(string? name, string? location,
             double rating, double price)
         {
@@ -26,14 +27,13 @@ namespace Assignment
         public double Rating { get; set; }
         public double Price { get; set; }
 
+        
 
-
-        public void TopRated(List<TouristDestination> tours)
         {
 
-            var res = tours.Where(t => t.Rating >= 5);
-            foreach (var t in res)
-            {
+                var res = tours.Where(t => t.Rating >= 5);
+                foreach (var t in res)
+                {
                 Console.WriteLine("Name: " + t.Name + " Location: " + t.Location +
                                     " Rating: " + t.Rating + " Price: " + t.Price);
             }
@@ -50,10 +50,8 @@ namespace Assignment
                     " Rating: " + t.Rating + " Price: " + t.Price);
             }
         }
-        public void FilterDestination(string name, List<TouristDestination> tours)
+         public void FilterDestination(string name, List<TouristDestination> tours)
         {
-            var res1 = tours.Find(t => t.Name == name);
-            if (res1 != null)
             {
                 Console.WriteLine("Name: " + res1.Name + " Location: " + res1.Location +
                     " Rating: " + res1.Rating + " Price: " + res1.Price);
@@ -64,4 +62,8 @@ namespace Assignment
             }
         }
     }
+
+
 }
+
+

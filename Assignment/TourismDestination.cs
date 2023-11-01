@@ -21,7 +21,7 @@ namespace Assignment
         public int Rating { get; set; }
         //public static List<TourismDestination> tourismDestinations= new List<TourismDestination>();    
 
-
+        
         public static void SortOnRating(List<TourismDestination> list)
         {
             if (list != null)
@@ -38,7 +38,7 @@ namespace Assignment
             {
                 Console.WriteLine("No destination added");
             }
-
+            
 
         }
     }
