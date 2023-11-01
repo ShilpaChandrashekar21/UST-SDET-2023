@@ -28,8 +28,9 @@ namespace Assignment
         public double Price { get; set; }
 
         
-
+        public void TopRated(List<TouristDestination> tours )
         {
+        
 
                 var res = tours.Where(t => t.Rating >= 5);
                 foreach (var t in res)
@@ -52,6 +53,8 @@ namespace Assignment
         }
          public void FilterDestination(string name, List<TouristDestination> tours)
         {
+            var res1 = tours.Find(t => t.Name == name);
+            if (res1 != null)
             {
                 Console.WriteLine("Name: " + res1.Name + " Location: " + res1.Location +
                     " Rating: " + res1.Rating + " Price: " + res1.Price);
