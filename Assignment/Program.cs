@@ -48,8 +48,42 @@ foreach (var student in studentArray)
 */
 
 using Assignment;
+using System;
 
-TouristDestination tourist = new TouristDestination();
+
+TourPackage tourPackage = new TourPackage();
+List<TourPackage> packages = new List<TourPackage>()
+{
+    new(11,"Tirupati",new(2023,12,12),4500),
+    new(22,"Mantralaya",new(2023,11,16),5500),
+    new(18,"Shiradi",new(2024,1,12),7500),
+};
+
+Console.WriteLine("Enter the package id");
+int p= Convert.ToInt32(Console.ReadLine());
+bool IsBooked = false;
+foreach (TourPackage package in packages)
+{
+    if (p == package.PackageId)
+    {
+        Thread thread = new Thread(() => package.TourBooking(package));
+        thread.Start();
+        thread.Join();
+        IsBooked = true;
+        
+    }
+}
+    if(!IsBooked)
+    {
+        Console.WriteLine("Packed ID " + p + " doesn't exist");
+    }
+    
+ 
+
+
+
+
+/*TouristDestination tourist = new TouristDestination();
 
  List<TouristDestination> tours = new List<TouristDestination>()
  {
@@ -66,8 +100,46 @@ Console.WriteLine("List of Destination from low to high");
 tourist.PriceAscending(tours);
 Console.WriteLine("Enter the destination name");
 string? resp = Console.ReadLine();
-tourist.FilterDestination(resp, tours);
+tourist.FilterDestination(resp, tours);*/
 
+/*class Program
+{
+    static async Task Main()
+    {
+        Hotel hotel = new Hotel();
+        List<Hotel> hotelsList = new List<Hotel>()
+        {
+            new("Manali","India",5,"Chalukya",10),
+             new("Manali","India",4,"Ashoka",15),
+              new("Manali","India",5,"Hamsa",5),
+               new("Agra","India",5,"Oia",10),
+                new("Jaipur","India",3,"Pink",7)
+
+        };
+
+        Console.WriteLine("Enter the Name of hotel and no of rooms to book");
+        string? hName=Console.ReadLine();
+        int rNum=Convert.ToInt32(Console.ReadLine());
+        bool havailable = false;
+        foreach (var h in hotelsList)
+        {
+            if (hName.Equals(h.HotelName))
+            {
+                await hotel.HotelBooking(rNum,h);
+                havailable = true;
+                break;
+            }
+        }
+            if (!havailable) 
+            {
+                Console.WriteLine("Hotel"+hName+" is not available");
+            }
+        
+        
+        
+    }
+}
+*/
 /*int ch, res;
 List<TourismDestination> destinations = new List<TourismDestination>()
 {

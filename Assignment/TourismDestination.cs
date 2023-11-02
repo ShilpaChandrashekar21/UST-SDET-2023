@@ -15,7 +15,7 @@ namespace Assignment
             Country = country;
             Rating = rating;
         }
-
+        public TourismDestination() { }
         public string? Name { get; set; }
         public string? Country { get; set; }
         public int Rating { get; set; }
