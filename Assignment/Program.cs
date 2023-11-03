@@ -51,7 +51,75 @@ using Assignment;
 using System;
 
 
-TourPackage tourPackage = new TourPackage();
+
+int choice,res;
+List<TaskItem> tasks=new List<TaskItem>();
+TaskItem taskItem  = new TaskItem();
+Console.WriteLine("------To Do List--------");
+do
+{
+    Console.WriteLine("1-> Add task\n2-> Delete Task\n3-> view task\n4-> close");
+    choice = Convert.ToInt32(Console.ReadLine());
+    switch (choice)
+    {
+        case 1: Console.WriteLine("Enter the task details");
+            Console.WriteLine("Task Id");
+            int tId= Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Task Description");
+            string? td= Console.ReadLine();
+            Console.WriteLine("Do you want to mark the task as completed");
+            Console.WriteLine("1->yes\t 2-> no");
+            int ch= Convert.ToInt32(Console.ReadLine());
+            bool IsC;
+            if (ch == 1)
+            {
+                Console.WriteLine("Marked as complete");
+                IsC = true;
+            }
+            else
+            {
+                IsC= false;
+            }
+            tasks.Add(new(tId, td, IsC));
+            taskItem.AddTask(tasks);
+            
+            
+            break;
+        case 2: Console.WriteLine("Enter the task Id you want to delete");
+            int taId= Convert.ToInt32(Console.ReadLine());
+            
+            taskItem.RemoveTask(taId,tasks); 
+            break;
+        case 3:
+            foreach(TaskItem i in tasks)
+            {
+                if (i.IsCompleted == true)
+                {
+                    Console.WriteLine("Completed tasks");
+                    Console.WriteLine("Task Id: " + i.TaskId + " Task description: " + i.TaskDescription);
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Pending tasks");
+                    Console.WriteLine("Task Id: " + i.TaskId + " Task description: " + i.TaskDescription);
+                }
+            }
+            break;
+            case 4: Console.WriteLine("closed");
+            Environment.Exit(0);
+            break;
+        default: Console.WriteLine("Please choose the correct value ");
+            break;
+            
+
+    }
+    Console.WriteLine("Do you need to continue");
+    Console.WriteLine("1->yes\n2->no");
+    res=Convert.ToInt32(Console.ReadLine());
+
+}while(res==1);
+/*TourPackage tourPackage = new TourPackage();
 List<TourPackage> packages = new List<TourPackage>()
 {
     new(11,"Tirupati",new(2023,12,12),4500),
@@ -75,10 +143,10 @@ foreach (TourPackage package in packages)
 }
     if(!IsBooked)
     {
-        Console.WriteLine("Packed ID " + p + " doesn't exist");
+        Console.WriteLine("Package ID " + p + " doesn't exist");
     }
     
- 
+ */
 
 
 
