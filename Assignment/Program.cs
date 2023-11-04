@@ -50,9 +50,22 @@ foreach (var student in studentArray)
 using Assignment;
 using System;
 
+FamilyMember grandparent = new FamilyMember("Grandparent", 86);
+FamilyMember parent1 = new FamilyMember("Parent 1", 51);
+FamilyMember parent2 = new FamilyMember("Parent 2", 42);
+FamilyMember child1 = new FamilyMember("Child 1", 7);
+FamilyMember child2 = new FamilyMember("Child 2", 5);
+
+grandparent.AddChild(parent1);
+grandparent.AddChild(parent2);
+parent1.AddChild(child1);
+parent2.AddChild(child2);
+
+FamilyTree familyTree = new FamilyTree(grandparent);
+familyTree.DisplayFamilyTree();
 
 
-int choice,res;
+/*int choice,res;
 List<TaskItem> tasks=new List<TaskItem>();
 TaskItem taskItem  = new TaskItem();
 Console.WriteLine("------To Do List--------");
@@ -118,7 +131,7 @@ do
     Console.WriteLine("1->yes\n2->no");
     res=Convert.ToInt32(Console.ReadLine());
 
-}while(res==1);
+}while(res==1);*/
 /*TourPackage tourPackage = new TourPackage();
 List<TourPackage> packages = new List<TourPackage>()
 {
