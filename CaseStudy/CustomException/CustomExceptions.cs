@@ -12,10 +12,13 @@ namespace CaseStudy.CustomException
 
         {
             {"NA", "Product not available"},
-            {"CE","Out of stock / check if your cart is empty" },
+            {"CE","Out of stock / check if your cart is empty"},
              {"DO","Could not deliver the order, because of" +
-                 " details mismatch" },
-             {"PS","Could not Process payment" }
+                 " details mismatch"},
+             {"PS","Could not Process payment"},
+             {"CNF","Course not found" },
+             {"SNF","Student not found" },
+             {"CF","No seats available for this course" }
 
 
         };
@@ -50,6 +53,15 @@ namespace CaseStudy.CustomException
         public ProcessPaymentException(string? message) : base(message)
         {
         }
+    }
+
+    internal class EnrollmentException : Exception
+    {
+        public EnrollmentException(string? message) : base(message)
+        {
+
+        }
+
     }
 
 }

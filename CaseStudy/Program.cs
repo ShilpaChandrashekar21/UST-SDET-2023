@@ -5,6 +5,172 @@
 using CaseStudy;
 using CaseStudy.CustomException;
 
+public delegate void Delegate1(string cname, Student s);
+public delegate void Delegate2(string sname);
+class Program
+{
+
+    public static void Main(string[] args)
+    {
+        List<Course> courses = new List<Course>();
+        List<Student> students = new List<Student>();
+        Course course = new Course();
+        int w, v;
+
+        Console.WriteLine("1->Admin\n2->Student");
+        int ch = Convert.ToInt32(Console.ReadLine());
+
+        if (ch == 1)
+        {
+
+            do
+            {
+                Console.WriteLine("1-> Add Course\n2->View All courses\n3->Enroll a student\n" +
+                "4-> View Enrolled Student\n5->Remove student\n6->Exit");
+                int res = Convert.ToInt32(Console.ReadLine());
+                switch (res)
+                {
+                    case 1:
+                        Console.WriteLine("Enter the Course Id");
+                        int cId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter the course name");
+                        string cName = Console.ReadLine();
+                        Console.WriteLine("Enter the name of Instructor");
+                        string cIns = Console.ReadLine();
+                        Console.WriteLine("Enter the total seats for this course");
+                        int sA = Convert.ToInt32(Console.ReadLine());
+                        courses.Add(new(cId, cName, cIns,sA));
+                        Console.WriteLine("Course added");
+                        break;
+                    case 2:Console.WriteLine("---All Courses---");
+                        foreach(var c in courses)
+                        {
+                            Console.WriteLine("Course code: " + c.CourseCode +
+                                " Course Name" + c.Title + " Instructor:" + c.Instructor +
+                                " No of seats:" + c.SeatsAvailable);
+                        }
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter the name of Student");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Enter the course name");
+                        string cname = Console.ReadLine();
+                        foreach (Course c in courses)
+                        {
+                            try
+                            {
+                                foreach (Student s in students)
+                                {
+                                    if (name.Equals(s.Name))
+                                    {
+                                        c.CourseRegistration(cname, s);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Student " + name + "doesn't exist");
+                                    }
+
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                        break;
+                    case 4:
+                        course.DisplayEnrolledStudents();
+                        break;
+                    case 5:
+                        Console.WriteLine("Enter the student name ");
+                        string sn = Console.ReadLine();
+                        Console.WriteLine("Enter the course name");
+                        string cn = Console.ReadLine();
+                        break;
+                    case 6:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("invalid option");
+                        break;
+                }
+                Console.WriteLine("Do you want to continue");
+                Console.WriteLine("1-> yes\n2->no");
+                 w = Convert.ToInt32(Console.ReadLine());
+            } while (w == 1);
+        }
+        else
+        {
+            do
+            {
+                Console.WriteLine("1->Enroll for a course\n" +
+               "2-> View Enrolled Student\n3->Withdraw course registration\n4->Exit");
+                int res1 = Convert.ToInt32(Console.ReadLine());
+                switch (res1)
+                {
+
+                    case 1:
+                        Console.WriteLine("Enter the name of Student");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Enter the course name");
+                        string cname = Console.ReadLine();
+                        foreach (Course c in courses)
+                        {
+                            try
+                            {
+                                foreach (Student s in students)
+                                {
+                                    if (name.Equals(s.Name))
+                                    {
+                                        c.CourseRegistration(cname, s);
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Student " + name + "doesn't exist");
+                                    }
+
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message);
+                            }
+                        }
+                        break;
+                    case 2:
+                        course.DisplayEnrolledStudents();
+                        break;
+                    case 3:
+                        Console.WriteLine("Enter the student name ");
+                        string sn = Console.ReadLine();
+                        Console.WriteLine("Enter the course name");
+                        string cn = Console.ReadLine();
+
+
+                        break;
+                    case 4:
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.WriteLine("invalid option");
+                        break;
+                }
+                Console.WriteLine("Do you want to continue");
+                Console.WriteLine("1-> yes\n2->no");
+                v = Convert.ToInt32(Console.ReadLine());
+            } while (v==1);
+
+        }
+
+
+    }
+}
+
+
+
+           
 /*Console.WriteLine("Choose");
 Console.WriteLine("1-> Book\n 2-> Fiction\n 3-> NonFiction \n " +
     "4-> Get Customer Details\n 5-> To Order" );
@@ -105,7 +271,7 @@ switch (Convert.ToInt32(Console.ReadLine()))
 
 
 
-string? pro, phNumber, response;
+/*string? pro, phNumber, response;
 int quan, cusId;
 
 
@@ -338,7 +504,7 @@ while (true)
 
     }
 
-
+*/
 
 
 
