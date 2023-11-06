@@ -16,9 +16,7 @@ namespace CaseStudy.CustomException
              {"DO","Could not deliver the order, because of" +
                  " details mismatch"},
              {"PS","Could not Process payment"},
-             {"CNF","Course not found" },
-             {"SNF","Student not found" },
-             {"CF","No seats available for this course" }
+             
 
 
         };
@@ -55,13 +53,6 @@ namespace CaseStudy.CustomException
         }
     }
 
-    internal class EnrollmentException : Exception
-    {
-        public EnrollmentException(string? message) : base(message)
-        {
-
-        }
-
-    }
+    
 
 }

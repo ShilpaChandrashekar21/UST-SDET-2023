@@ -13,6 +13,6 @@ namespace CaseStudy
         public int StudentId { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }
-        public static List<Student> courses = new List<Student>();
+        public static List<Student> students = new List<Student>();
     }
 }

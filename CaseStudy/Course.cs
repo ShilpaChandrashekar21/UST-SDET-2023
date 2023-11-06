@@ -4,82 +4,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CaseStudy.CustomException.EnrollmentExceptions;
 
 namespace CaseStudy
 {
-    internal class Course :  IEnrollable
+    internal class Course : IEnrollable
     {
-        public Course(int courseCode, string? title, string? instructor, int seatsAvailable)
-        {
-            CourseCode = courseCode;
-            Title = title;
-            Instructor = instructor;
-            EnrolledStudents = new List<Student>();
-            SeatsAvailable = seatsAvailable;
-        }
-        public Course() { }
-
-
-
         public int CourseCode { get; set; }
-        public string? Title { get; set;  }
+        public string? Title { get; set; }
         public string? Instructor { get; set; }
-        public int SeatsAvailable { get; set; }
-        //public static List<Course> courses = new List<Course>();
-        List<Student> EnrolledStudents { get; set; }
+        public int? SeatsAvailable { get; set; }
+        public static List<Course> courses = new List<Course>();
+        public List<Student> Enrollments = new List<Student>();
 
-        public void CourseRegistration(string courseName,Student student)
+        public void CourseRegistration(int courseId, int studId)
         {
-            if(courseName.Equals(Title) && SeatsAvailable >= EnrolledStudents.Count)
+            var cour = courses.Find(x => x.CourseCode == courseId && x.SeatsAvailable >= x.Enrollments.Count);
+            var name = Student.students.Find(x => x.StudentId == studId);
+            var stud = cour.Enrollments.Find(x => x.StudentId == studId);
+
+            if (cour == null)
             {
-                try
-                {
-                    EnrolledStudents.Add(student);
-                    Console.WriteLine("Registered");
-                }
-                catch 
-                {
-                    throw new EnrollmentException(CustomExceptions.messageList["CNF"]);
-                }
-               
+                throw new FullException(EnrollmentExceptions.exceptionMessages["One"]);
+            }
+            else if (stud != null)
+            {
+                throw new DuplicateException(EnrollmentExceptions.exceptionMessages["Two"]);
             }
             else
             {
-                throw new EnrollmentException(CustomExceptions.messageList["CF"]);
+                cour.Enrollments.Add(name);
+                Console.WriteLine("Successfully Registered!!!");
             }
-           
-            
+
         }
 
-        public void Withdrawal(string name)
+        public void Withdrawal(int cId)
         {
-            try
+            var data = courses.Find(x => x.CourseCode == cId);
+            var removeEnroll = data.Enrollments.RemoveAll(x => x.StudentId == cId);
+            if (removeEnroll != null)
             {
-                var res = EnrolledStudents.Where(x => x.Name == name);
-                foreach (var st in res)
-                {
-                    if (res != null)
-                    {
-                        EnrolledStudents.Remove(st);
-                        Console.WriteLine("Withdrawn");
-                    }
-
-                }
+                Console.WriteLine("Withdrawn");
             }
-            catch
+            else
             {
-                throw new EnrollmentException(CustomExceptions.messageList["SNF"]);
-            }
-            
-            
-        }
-
-        public void DisplayEnrolledStudents()
-        {
-            foreach(Student student in EnrolledStudents)
-            {
-                Console.WriteLine(student.Name);
+                Console.WriteLine("Withdraw unsuccess");
             }
         }
+
     }
+
 }

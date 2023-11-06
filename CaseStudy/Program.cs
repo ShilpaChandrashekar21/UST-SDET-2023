@@ -4,7 +4,214 @@
 
 using CaseStudy;
 using CaseStudy.CustomException;
+using static CaseStudy.CustomException.EnrollmentExceptions;
 
+class Program
+{
+    public delegate void Delegate1(int coId, int stId);
+    public delegate void Delegate2(int couId);
+
+    public static void Main(string[] args)
+    {
+        try
+        {
+            int ch, op;
+
+
+            do
+            {
+               
+                Console.WriteLine("Choose The Option \n 1->Admin \n2->Student");
+                ch = Convert.ToInt32(Console.ReadLine());
+                if (ch == 1)
+                {
+                    int choice, choice1;
+                    do
+                    {
+                        Console.WriteLine("Choose The option:\n1.Add Course\n2.View Report");
+                        choice = Convert.ToInt32(Console.ReadLine());
+                        switch (choice)
+                        {
+                            case 1:
+                                Course courses = new Course();
+                                Console.WriteLine("Enter The Course Code");
+                                courses.CourseCode = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter The Title");
+                                courses.Title = Console.ReadLine();
+                                Console.WriteLine("Enter the instructor");
+                                courses.Instructor = Console.ReadLine();
+                                Console.WriteLine("Enter the no of seats");
+                                courses.SeatsAvailable = Convert.ToInt32(Console.ReadLine());
+
+                                Course.courses.Add(courses);
+                                Console.WriteLine("Course Added Successfully");
+                                break;
+                            case 2:
+                                Course cc = new Course();
+                                Console.WriteLine("---------Course---------");
+                                foreach (var d in Course.courses)
+                                {
+                                    if (d != null)
+                                    {
+                                        Console.WriteLine($"Course Code:{d.CourseCode}\t Course Title:{d.Title}\tInstructor:{d.Instructor}");
+
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No Courses Found !!!!");
+                                    }
+                                }
+
+                                Console.WriteLine("**** Enrolled Student Details****");
+                                foreach (var s in cc.Enrollments)
+                                {
+                                    if (s != null)
+                                    {
+                                        Console.WriteLine($"Course Code:{cc.CourseCode}\t Course Title:{cc.Title}\tInstructor:{cc.Instructor}\t Student Id:{s.StudentId}" +
+                                            $"student Name:{s.Name}\tEmail:{s.Email}");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No Enrollment found!!!");
+                                    }
+                                }
+                                break;
+                            default:
+                                Console.WriteLine("Invalid Option try again Later!!!");
+                                break;
+                        }
+                        Console.WriteLine("Do You Want To Continue Press\n1.Yes\n2.No");
+                        choice1 = Convert.ToInt32(Console.ReadLine());
+                    } while (choice1 == 1);
+
+                }
+                else if (ch == 2)
+                {
+                    int soption, soption1;
+                    do
+                    {
+
+
+                        Console.WriteLine("Choose The Menu You Want: \n 1.New Registration" +
+                            "\n2.Enroll Course\n3.View Enrolled Course\n4.Withdraw Course \n 5.Exit");
+                        soption = Convert.ToInt32(Console.ReadLine());
+                        Student student = new Student();
+                        Course courses = new Course();
+
+                        switch (soption)
+                        {
+
+                            case 1:
+                                Console.WriteLine("Enter The Student Id/User Id");
+                                student.StudentId = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter The Name");
+                                student.Name = Console.ReadLine();
+                                Console.WriteLine("Enter The Email");
+                                student.Email = Console.ReadLine();
+
+                                Student.students.Add(student);
+                                Console.WriteLine("Successfully Register!!!");
+                                break;
+                            case 2:
+
+
+                                int cid;
+                                if (Course.courses.Count != 0)
+                                {
+                                    Console.WriteLine("***List Of Course Availble In India School***");
+                                    foreach (var course in Course.courses)
+                                    {
+
+                                        Console.WriteLine($"Course Code:{course.CourseCode}\tCourse Title:{course.Title}" +
+                                            $"\tInstructor:{course.Instructor}\tNo:Of Seat:{course.SeatsAvailable}\t");
+
+
+
+
+                                    }
+                                    Console.WriteLine("Enter  the Student Id");
+                                    int sssid = Convert.ToInt32(Console.ReadLine());
+                                    Console.WriteLine("Enter the course code You Want enroll");
+                                    cid = Convert.ToInt32(Console.ReadLine());
+                                    Enrollasync(sssid, cid);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No Courses Available!!!");
+
+                                }
+
+
+                                break;
+                            case 3:
+
+                                Console.WriteLine("Enter the Stude Id");
+                                int esid = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter The Course Id");
+                                int ccid = Convert.ToInt32(Console.ReadLine());
+
+                                var courseObj = Course.courses.Find(x => x.CourseCode == ccid);
+                                var EnrolObj = courseObj.Enrollments.Find(x => x.StudentId == esid);
+
+                                if (EnrolObj != null)
+                                {
+
+
+
+                                    Console.WriteLine($"Course Code:{courseObj.CourseCode}\tTitle:{courseObj.Title}" +
+                                        $"\tInstructor:{courseObj.Instructor}\tStudent Id:{EnrolObj.StudentId}\tStudent Name:{EnrolObj.Name}\tEmail:{EnrolObj.Email}");
+
+
+                                }
+                                break;
+                            case 4:
+                                Console.WriteLine("Enter Your Course Code You Want Withdraw");
+                                int eid = Convert.ToInt32(Console.ReadLine());
+                                Withdraw(eid);
+                                break;
+                            case 5:
+                                Environment.Exit(0);
+                                break;
+                            default:
+                                Console.WriteLine("Invalid option try again!!!");
+                                break;
+                        }
+                        Console.WriteLine("Do You Want To Continue press \n 1.Yes \n 2.No");
+                        soption1 = Convert.ToInt32(Console.ReadLine());
+
+                    } while (soption1 == 1);
+                }
+
+            } while (true);
+        }
+        catch (FullException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        catch (DuplicateException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+    public static async Task Enrollasync(int sssid, int cid)
+    {
+        Course c = new Course();
+        await Task.Delay(1000);
+        Delegate1 d1 = new Delegate1(c.CourseRegistration);
+        d1.Invoke(sssid, cid);
+
+    }
+    public static async Task Withdraw(int cid)
+    {
+        Course cou = new();
+        await Task.Delay(1000);
+        Delegate2 d2 = new Delegate2(cou.Withdrawal);
+        d2.Invoke(cid);
+    }
+}
+
+
+/*
 public delegate void Delegate1(string cname, Student s);
 public delegate void Delegate2(string sname);
 class Program
@@ -168,7 +375,7 @@ class Program
     }
 }
 
-
+*/
 
            
 /*Console.WriteLine("Choose");
