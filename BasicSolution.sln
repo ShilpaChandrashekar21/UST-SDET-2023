@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LINQ", "LINQ\LINQ.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Threads", "Threads\Threads.csproj", "{8E7CA4DC-CDEF-434E-B8B8-09B18E17B038}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSA", "DSA\DSA.csproj", "{58604F1F-DF40-4D61-9F7B-D1C0F0C5FC7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DSA", "DSA\DSA.csproj", "{58604F1F-DF40-4D61-9F7B-D1C0F0C5FC7C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{00A9EC89-3772-40C6-AB91-CCE6F3E0B3D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject2\TestProject1.csproj", "{B84A7B06-290A-44D8-AE28-F847BC192574}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{58604F1F-DF40-4D61-9F7B-D1C0F0C5FC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58604F1F-DF40-4D61-9F7B-D1C0F0C5FC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58604F1F-DF40-4D61-9F7B-D1C0F0C5FC7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00A9EC89-3772-40C6-AB91-CCE6F3E0B3D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00A9EC89-3772-40C6-AB91-CCE6F3E0B3D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00A9EC89-3772-40C6-AB91-CCE6F3E0B3D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00A9EC89-3772-40C6-AB91-CCE6F3E0B3D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B84A7B06-290A-44D8-AE28-F847BC192574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B84A7B06-290A-44D8-AE28-F847BC192574}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B84A7B06-290A-44D8-AE28-F847BC192574}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B84A7B06-290A-44D8-AE28-F847BC192574}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
